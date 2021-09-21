@@ -1,16 +1,25 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    {{ post.title }}
+{{ post.title }}
 {% endblock %}
 
 
 {% block content_title %}
-    {{post.title}}
+{{post.title}}
 {% endblock  %}
 
 {% block content %}
-    {{post.body}}
+<div class="container">
+    <p>{{post.body}}</p>
+    <span class="badge">{{ post.created }}</span>
+    <div class="pull-right">
+        <b>Tags:</b> 
+        {% for tag in tags %}
+            <a href="{{ url_for('posts.tag_detail', slug=tag.slug)}}"><span class="label label-success">{{ tag.name }}</span></a>
+        
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock  %}
-
-
